@@ -1,7 +1,6 @@
 import { AppBar, Box, Container, Menu, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material'
 import { useMediaQuery } from "@mui/material";
 import IconButton from '@mui/material/IconButton';
-import LoginIcon from '@mui/icons-material/Login';
 import Avatar from '@mui/material/Avatar';
 import logo from '../assets/logo.png';
 import React, { useState } from 'react'
