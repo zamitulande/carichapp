@@ -1,16 +1,19 @@
-import { Box, Container } from '@mui/material'
+import { Box, Container, useMediaQuery } from '@mui/material'
 import React from 'react'
 import Chats from './helpers/Chats'
 import ChatList from './helpers/ChatList'
 
 const Dashboard = () => {
-  return (
-    <Container maxWidth="xl">
-        <Box mt={2}>
-            <Chats/>   
-        </Box>
-    </Container>
-  )
+
+    const isMobile = useMediaQuery("(max-width:600px)");
+    
+    return (
+        <>
+            <Box mt={isMobile ? 7 : 10}>
+                <ChatList />
+            </Box>
+        </>
+    )
 }
 
 export default Dashboard

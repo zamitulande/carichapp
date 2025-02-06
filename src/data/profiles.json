@@ -4,13 +4,13 @@
         "name": "Juan Cortes",
         "email": "juan@correo.com",
         "password": "123456",
-        "image": "/images/face1.png"
+        "image": "/images/profiles/face1.webp"
     },
     {
         "id": 2,
         "name": "Carlos Rios",
         "email": "rios@correo.com",
         "password": "123456",
-        "image": "/images/face2.png"
+        "image": "/images/profiles/face2.webp"
     }
 ]
