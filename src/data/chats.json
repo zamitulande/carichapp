@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "name": "Laura Caseres",
+        "message": "Buenas tardes, me puede ayudar?",
+        "timestamp": "2021-01-01T12:00:00.000Z"
+    },
+    {
+        "id": 2,
+        "name": "Camilo Cruz",
+        "message": "Hola, algún contacto en específico?",
+        "timestamp": "2021-01-01T12:01:00.000Z"
+    },
+    {
+        "id": 3,
+        "name": "Jorge Perez",
+        "message": "Hola, necesito una cotización",
+        "timestamp": "2021-01-01T12:02:00.000Z"
+    },
+    {
+        "id": 4,
+        "name": "Lina Gomez",
+        "message": "necesito un servicio",
+        "timestamp": "2021-01-01T12:03:00.000Z"
+    },
+    {
+        "id": 5,
+        "name": "Camilo Cruz",
+        "message": "Claro, me puedes enviar los detalles del proyecto?",
+        "timestamp": "2021-01-01T12:04:00.000Z"
+    },
+    {
+        "id": 6,
+        "name": "Dario Gomez",
+        "message": "Hola, cuanto vale el servicio?",
+        "timestamp": "2021-01-01T12:02:00.000Z"
+    },
+    {
+        "id": 7,
+        "name": "Guillermo Rico",
+        "message": "Si, necesito un desarrollo web",
+        "timestamp": "2021-01-01T12:03:00.000Z"
+    },
+    {
+        "id": 8,
+        "name": "Andres Rivera",
+        "message": "Claro, me puedes enviar los detalles del proyecto?",
+        "timestamp": "2021-01-01T12:04:00.000Z"
+    },
+    {
+        "id": 9,
+        "name": "David Hoyos",
+        "message": "Hola, necesito un favor",
+        "timestamp": "2021-01-01T12:02:00.000Z"
+    },
+    {
+        "id": 10,
+        "name": "Jeison Jimenez",
+        "message": "Buenas tardes, me puede ayudar?",
+        "timestamp": "2021-01-01T12:03:00.000Z"
+    }
+]
