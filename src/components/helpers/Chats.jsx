@@ -3,49 +3,34 @@ import CloseIcon from '@mui/icons-material/Cancel';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import DataChats from '../../data/chats.json'
-import { setChat } from "../../store/features/chatSlice";
+import { setChat, setMessageBoot } from "../../store/features/chatSlice";
 
 
 const Chats = ({ open, setOpen, chat }) => {
 
-   const dispatch = useDispatch();
-  const [messages, setMessages] = useState([]);
+  const dispatch = useDispatch();
 
+
+  const [messages, setMessages] = useState([]);
+  const [messageSend, setMessageSend] = useState("");
 
   const handleCloseDrawer = () => {
     setOpen(false);
   }
-
   //carga mensajes guardados en localstorage
   useEffect(() => {
-      //primero buscar si hay mensajes guardados en localstorage
-      const storedMessages = JSON.parse(localStorage.getItem(`chat_${chat.id}`))
-      if (storedMessages) {
-        setMessages(storedMessages);
-      } else {
-        //sino cargar mensajes iniciales del archivo JSON
-        const chatData = DataChats.find((item) => item.id === chat.id);
+    if (chat) { // Solo ejecutar cuando hay un chat válido
+      const storedMessages = JSON.parse(localStorage.getItem(`chat_${chat.id}`)) || [];
+      setMessages(storedMessages);
 
-        if (chatData) {
-          // Cargar el mensaje inicial del archivo JSON
-          const initialMessages = chatData.messages || [
-            {
-              text: chatData.messages[0].text,
-              sender: "user",
-              time: chatData.messages[0].time,
-            },
-          ];
-          setMessages(initialMessages);
-          localStorage.setItem(`chat_${chat.id}`, JSON.stringify(initialMessages));
-        }
-      }
+      dispatch(setMessageBoot(storedMessages));
+    }
   }, [chat]);
 
   const handleSendMessage = () => {
-    const replyText = document.getElementById("message-input").value.trim();
-    if (replyText === "") return;
+    if (messageSend === "") return;
 
-    const newMessage = { text: replyText, sender: "me", time: new Date().toLocaleTimeString() };
+    const newMessage = { text: messageSend, sender: "me", time: new Date().toLocaleTimeString() };
     const updatedMessages = [...messages, newMessage];
 
     //guardar mensaje enviado en localStorage 
@@ -53,18 +38,21 @@ const Chats = ({ open, setOpen, chat }) => {
 
     //actualizar estado con el nuevo mensaje
     setMessages(updatedMessages);
+    setMessageSend("");
 
-    //respoder automaticamente
+    // Respuesta automática después de 1 segundo
     setTimeout(() => {
-      const botReply = { text: "Muchas gracias", sender: "user", time: new Date().toLocaleTimeString() };
-      const updatedWithBotReply = [...updatedMessages, botReply];
-      localStorage.setItem(`chat_${chat.id}`, JSON.stringify(updatedWithBotReply));
-      setMessages(updatedWithBotReply);
-      dispatch(setChat(chat));
+      const botMessage = { text: "Muchas gracias", sender: "bot", time: new Date().toLocaleTimeString() };
+      const updatedWithBotResponse = [...updatedMessages, botMessage];
+
+      localStorage.setItem(`chat_${chat.id}`, JSON.stringify(updatedWithBotResponse));
+      setMessages(updatedWithBotResponse);
+      dispatch(setMessageBoot(updatedWithBotResponse))
     }, 5000);
 
-    document.getElementById("message-input").value = "";
   };
+
+  if (!chat) return null;
 
   return (
     <Drawer
@@ -126,6 +114,10 @@ const Chats = ({ open, setOpen, chat }) => {
 
             {/* Campo para responder */}
             <TextField
+              type='text'
+              name="messageSend"
+              value={messageSend}
+              onChange={(e) => setMessageSend(e.target.value)}
               fullWidth
               id="message-input"
               label="Escribe tu respuesta..."

@@ -13,14 +13,16 @@ const ChatList = () => {
   const dispatch = useDispatch();
 
   
-  const chat = useSelector((state) => state.chat.chat);
+  const chatsStorage = useSelector((state) => state.chat.chat);
+  const messageBoot = useSelector((state) => state.chat.messageBoot);
   const login = useSelector((state) => state.user.login);
   const [open, setOpen] = useState(false);
+  const [selectedChat, setSelectedChat] = useState(null);
 
   const handleSelectUser = (chat) => {
     if(login){
+      setSelectedChat(chat);
       setOpen(true);
-      dispatch(setChat(chat))
     }else{
       Swal.fire({
         icon: 'error',
@@ -28,20 +30,34 @@ const ChatList = () => {
       })
     }    
   }
+
+  useEffect(() => {
+    const handleGenerateChats = () => {
+      const chats = DataChats.map((chat) => {
+        const storedMessages = JSON.parse(localStorage.getItem(`chat_${chat.id}`)) || chat.messages;
+        const chatData = {
+          id: chat.id,
+          name: chat.name,
+          image: chat.image,
+          messages: storedMessages
+        };   
+        return chatData;
+      });
+      dispatch(setChat(chats));
+    };  
+    handleGenerateChats();
+  }, []);
+  
   
   const getLastMessage = (chatId) => {
     const storedChat = JSON.parse(localStorage.getItem(`chat_${chatId}`)) || [];
-    console.log(storedChat)
     if (storedChat && storedChat.length > 0) {
       return storedChat.length > 0 ? storedChat[storedChat.length - 1] : null; //traer el último mensaje del localstorage
-    } else {
-      return storedChat ? storedChat[0] : null; //si no hay mensajes en localStorage, devuelve el primer mensaje
-    }
+    } 
   }
-
   return (
     <>
-      {DataChats.map((chat, index) => {
+      {chatsStorage.map((chat, index) => {
         const lastMessage = getLastMessage(chat.id);
         return (
         <Box key={chat.id}
@@ -71,15 +87,16 @@ const ChatList = () => {
             <Typography sx={{ fontSize: 20, fontWeight: "bold", padding:0 }}>
               {chat.name}
             </Typography>
-            <Typography variant="span" sx={{margin:0}}>{lastMessage ? lastMessage.text : chat.messages[0].text}</Typography>
+            <Typography variant="span" sx={{margin:0}}>{lastMessage.text}</Typography>
               <Typography variant="span" sx={{mt:1, fontSize:15}}>
-                {lastMessage ? `ultima vez ${lastMessage.time}` : `ultima vez ${chat.messages[0].time}`}
+               ultima vez {lastMessage.time}
               </Typography>
           </Box>
+         
         </Box>
         );
       })}
-      <Chats open={open} setOpen={setOpen} chat={chat}/>
+       <Chats open={open} setOpen={setOpen} chat={selectedChat} />
     </>
   )
 }
