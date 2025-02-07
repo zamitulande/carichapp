@@ -21,3 +21,21 @@ instalacion y levantar aplicacion (node v20.10.0 y npm v10.2.3)
 3. escribir el comando npm install
 3. escribir el comando npm run dev
 4. en un navegado acceder al puerto http://localhost:5173/
+
+
+funcionalidades generales
+
+-pagina principal carga listado de chats con mensajes iniciales
+-para responder a cada chat el agente debe iniciar sesion
+-hay dos agentes predeterminado para ingresar
+-al hacer login ingresar:
+
+        - email: juan@correo.com
+          password: 123456
+
+        - email: rios@correo.com
+          password: 123456
+
+-al ingresar podra responder mensajes
+-la primera vez que responda el agente este tendra un mensaje predeterminado para enviar al cliente
+-podra apreciar si el cliente esta escribiendo y una notificacion para mensaje nuevo
