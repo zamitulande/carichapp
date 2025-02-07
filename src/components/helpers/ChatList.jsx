@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2';
 import DataChats from '../../data/chats.json'
 import { Box, Typography } from '@mui/material';
-import LooksOneIcon from '@mui/icons-material/LooksOne';
 import Chats from './Chats';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -79,12 +78,12 @@ const ChatList = () => {
               justifyContent: "flex-start",
               gap: 1,
               padding: 1.5,
-              backgroundColor: "#D0E8FF",
+              backgroundColor: "#f0f8ff",
               borderRadius: "8px",
               cursor: "pointer",
               transition: "background-color 0.3s ease",
               "&:hover": {
-                backgroundColor: "#A8D0FF"
+                backgroundColor: "#f0f8f0"
               },
               borderBottom: "solid 1px black"
             }}

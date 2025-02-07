@@ -121,7 +121,7 @@ const Login = ({ open, setOpen }) => {
                     <Grid container >
                         <Grid size={12}>
                             <Button
-                                color='secondary'
+                                color='primary'
                                 type="submit"
                                 fullWidth
                                 sx={{

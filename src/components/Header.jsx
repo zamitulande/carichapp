@@ -1,4 +1,4 @@
-import { AppBar, Box, Container, Menu, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material'
+import { AppBar, Box, Container, Menu, MenuItem, Toolbar, Tooltip } from '@mui/material'
 import { useMediaQuery } from "@mui/material";
 import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
@@ -14,8 +14,8 @@ const Header = () => {
 
     const isMobile = useMediaQuery("(max-width:600px)");
 
-    const login = useSelector((state) => state.user.login)
-    const users = useSelector((state) => state.user.users)
+    const login = useSelector((state) => state.user.login);
+    const users = useSelector((state) => state.user.users);
 
     const [anchorElUser, setAnchorElUser] = useState(null);
     const [open, setOpen] = useState(false);

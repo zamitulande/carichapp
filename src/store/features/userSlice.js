@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// Funciones para manejar localStorage
+//manejar localStorage
 const saveToStorage = (key, value) => {
     localStorage.setItem(key, JSON.stringify(value));
 };

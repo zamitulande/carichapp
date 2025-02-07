@@ -1,158 +1,158 @@
 [
     {
-        "id": 1,
-        "name": "Laura Caseres",
-        "messages": [
-            {
-                "text": "Buenas tardes, me puede ayudar?",
-                "sender": "user",
-                "time": "09:34:12 a. m."
-            }
-        ],
-        "image": "/images/customers/face1.webp"
+      "id": 1,
+      "name": "Laura Caseres",
+      "messages": [
+        {
+          "text": "¿Desarrollo software a medida? ¿Proyectos recientes?",
+          "sender": "user",
+          "time": "09:34:12 a. m."
+        }
+      ],
+      "image": "/images/customers/face1.webp"
     },
     {
-        "id": 2,
-        "name": "Camilo Cruz",
-        "messages": [
-            {
-                "text": "Buenas tardes, me puede ayudar?",
-                "sender": "user",
-                "time": "02:22:56 p. m."
-            }
-        ],
-        "image": "/images/customers/face2.webp"
+      "id": 2,
+      "name": "Camilo Cruz",
+      "messages": [
+        {
+          "text": "¿Almacenamiento en la nube? ¿Opciones y ventajas?",
+          "sender": "user",
+          "time": "02:22:56 p. m."
+        }
+      ],
+      "image": "/images/customers/face2.webp"
     },
     {
-        "id": 3,
-        "name": "Jorge Perez",
-        "messages": [
-            {
-                "text": "Buenas tardes, me puede ayudar?",
-                "sender": "user",
-                "time": "07:14:45 a. m."
-            }
-        ],
-        "image": "/images/customers/face3.webp"
+      "id": 3,
+      "name": "Jorge Perez",
+      "messages": [
+        {
+          "text": "¿Consultoría ciberseguridad? ¿Aumento de intentos phishing?",
+          "sender": "user",
+          "time": "07:14:45 a. m."
+        }
+      ],
+      "image": "/images/customers/face3.webp"
     },
     {
-        "id": 4,
-        "name": "Lina Gomez",
-        "messages": [
-            {
-                "text": "Buenas tardes, me puede ayudar?",
-                "sender": "user",
-                "time": "03:18:27 p. m."
-            }
-        ],
-        "image": "/images/customers/face4.webp"
+      "id": 4,
+      "name": "Lina Gomez",
+      "messages": [
+        {
+          "text": "¿Internet alta velocidad? ¿Planes e instalación?",
+          "sender": "user",
+          "time": "03:18:27 p. m."
+        }
+      ],
+      "image": "/images/customers/face4.webp"
     },
     {
-        "id": 5,
-        "name": "Daniela Vergara",
-        "messages": [
-            {
-                "text": "Buenas tardes, me puede ayudar?",
-                "sender": "user",
-                "time": "10:57:30 a. m."
-            }
-        ],
-        "image": "/images/customers/face5.webp"
+      "id": 5,
+      "name": "Daniela Vergara",
+      "messages": [
+        {
+          "text": "¿Capacitación desarrollo móvil? ¿Adquirir habilidades?",
+          "sender": "user",
+          "time": "10:57:30 a. m."
+        }
+      ],
+      "image": "/images/customers/face5.webp"
     },
     {
-        "id": 6,
-        "name": "Dario Gomez",
-        "messages": [
-            {
-                "text": "Buenas tardes, me puede ayudar?",
-                "sender": "user",
-                "time": "11:47:55 p. m."
-            }
-        ],
-        "image": "/images/customers/face6.webp"
+      "id": 6,
+      "name": "Dario Gomez",
+      "messages": [
+        {
+          "text": "¿Soluciones IA? ¿Optimizar procesos empresariales?",
+          "sender": "user",
+          "time": "11:47:55 p. m."
+        }
+      ],
+      "image": "/images/customers/face6.webp"
     },
     {
-        "id": 7,
-        "name": "Guillermo Rico",
-        "messages": [
-            {
-                "text": "Buenas tardes, me puede ayudar?",
-                "sender": "user",
-                "time": "01:10:13 p. m."
-            }
-        ],
-        "image": "/images/customers/face7.webp"
+      "id": 7,
+      "name": "Guillermo Rico",
+      "messages": [
+        {
+          "text": "¿Plataformas ecommerce? ¿Lanzar tienda online?",
+          "sender": "user",
+          "time": "01:10:13 p. m."
+        }
+      ],
+      "image": "/images/customers/face7.webp"
     },
     {
-        "id": 8,
-        "name": "Andres Rivera",
-        "messages": [
-            {
-                "text": "Buenas tardes, me puede ayudar?",
-                "sender": "user",
-                "time": "05:45:08 p. m."
-            }
-        ],
-        "image": "/images/customers/face8.webp"
+      "id": 8,
+      "name": "Andres Rivera",
+      "messages": [
+        {
+          "text": "¿Mantenimiento y soporte técnico? ¿Equipos informáticos?",
+          "sender": "user",
+          "time": "05:45:08 p. m."
+        }
+      ],
+      "image": "/images/customers/face8.webp"
     },
     {
-        "id": 9,
-        "name": "David Hoyos",
-        "messages": [
-            {
-                "text": "Buenas tardes, me puede ayudar?",
-                "sender": "user",
-                "time": "09:23:09 a. m."
-            }
-        ],
-        "image": "/images/customers/face9.webp"
+      "id": 9,
+      "name": "David Hoyos",
+      "messages": [
+        {
+          "text": "¿Marketing digital? ¿Empresas de tecnología?",
+          "sender": "user",
+          "time": "09:23:09 a. m."
+        }
+      ],
+      "image": "/images/customers/face9.webp"
     },
     {
-        "id": 10,
-        "name": "Jeison Jimenez",
-        "messages": [
-            {
-                "text": "Buenas tardes, me puede ayudar?",
-                "sender": "user",
-                "time": "12:01:21 a. m."
-            }
-        ],
-        "image": "/images/customers/face10.webp"
+      "id": 10,
+      "name": "Jeison Jimenez",
+      "messages": [
+        {
+          "text": "¿Diseño y desarrollo web? ¿Renovar sitio web?",
+          "sender": "user",
+          "time": "12:01:21 a. m."
+        }
+      ],
+      "image": "/images/customers/face10.webp"
     },
     {
-        "id": 12,
-        "name": "Camilo Cruz",
-        "messages": [
-            {
-                "text": "Buenas tardes, me puede ayudar?",
-                "sender": "user",
-                "time": "06:55:30 p. m."
-            }
-        ],
-        "image": "/images/customers/face12.webp"
+      "id": 12,
+      "name": "Camilo Cruz",
+      "messages": [
+        {
+          "text": "¿Realidad virtual/aumentada? ¿Mejorar experiencia clientes?",
+          "sender": "user",
+          "time": "06:55:30 p. m."
+        }
+      ],
+      "image": "/images/customers/face12.webp"
     },
     {
-        "id": 13,
-        "name": "Abraham Gaviria",
-        "messages": [
-            {
-                "text": "Buenas tardes, me puede ayudar?",
-                "sender": "user",
-                "time": "08:15:02 a. m."
-            }
-        ],
-        "image": "/images/customers/face13.webp"
+      "id": 13,
+      "name": "Abraham Gaviria",
+      "messages": [
+        {
+          "text": "¿Consultoría transformación digital? ¿Nuevas tecnologías?",
+          "sender": "user",
+          "time": "08:15:02 a. m."
+        }
+      ],
+      "image": "/images/customers/face13.webp"
     },
     {
-        "id": 14,
-        "name": "Fernando Guzman",
-        "messages": [
-            {
-                "text": "Buenas tardes, me puede ayudar?",
-                "sender": "user",
-                "time": "04:20:40 p. m."
-            }
-        ],
-        "image": "/images/customers/face9.webp"
+      "id": 14,
+      "name": "Fernando Guzman",
+      "messages": [
+        {
+          "text": "¿Gestión de proyectos? ¿Empresas de tecnología?",
+          "sender": "user",
+          "time": "04:20:40 p. m."
+        }
+      ],
+      "image": "/images/customers/face9.webp"
     }
-]
+  ]

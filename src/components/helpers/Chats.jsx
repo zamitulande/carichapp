@@ -1,8 +1,8 @@
-import { Box, Button, Drawer, IconButton, Modal, TextField, Typography, useMediaQuery } from "@mui/material";
+import { Box, Button, Drawer, IconButton, TextField, Typography, useMediaQuery } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Cancel';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import DataChats from '../../data/chats.json'
+import responses from "../../data/responses";
 import { clearIsTypingChat, markChatAsUnread, setIsTypingChat, setMessageBoot } from "../../store/features/chatSlice";
 
 
@@ -14,16 +14,26 @@ const Chats = ({ open, setOpen, chat }) => {
   const [messages, setMessages] = useState([]);
   const [messageSend, setMessageSend] = useState("");
 
+  const users = useSelector((state) => state.user.users)
+
   const handleCloseDrawer = () => {
     setOpen(false);
   }
+
   //carga mensajes guardados en localstorage
   useEffect(() => {
-    if (chat) { // Solo ejecutar cuando hay un chat válido
+    if (chat) {
       const storedMessages = JSON.parse(localStorage.getItem(`chat_${chat.id}`)) || [];
       setMessages(storedMessages);
 
       dispatch(setMessageBoot(storedMessages));
+
+      //si el chat tiene solo un mensaje, establecer el mensaje predeterminado
+      if (storedMessages.length <= 1) {
+        setMessageSend(`Hola, soy ${users.name}, ¿qué necesitas?`);
+      } else {
+        setMessageSend("");
+      }
     }
   }, [chat]);
 
@@ -42,9 +52,13 @@ const Chats = ({ open, setOpen, chat }) => {
 
     dispatch(setIsTypingChat(chat.id));
 
-    // Respuesta automática después de 1 segundo
+    //respuesta automática después de 10 segundo
     setTimeout(() => {
-      const botMessage = { text: "Muchas gracias", sender: "bot", time: new Date().toLocaleTimeString() };
+      //elegit una respuesta aleatoria del response.jsom
+      const randomIndex = Math.floor(Math.random() * responses.length);
+      const randomResponse = responses[randomIndex];
+
+      const botMessage = { text: randomResponse, sender: "bot", time: new Date().toLocaleTimeString() };
       const updatedWithBotResponse = [...updatedMessages, botMessage];
 
       localStorage.setItem(`chat_${chat.id}`, JSON.stringify(updatedWithBotResponse));
@@ -96,7 +110,6 @@ const Chats = ({ open, setOpen, chat }) => {
               </Typography>
             </Box>
 
-            {/* Historial de mensajes */}
             <Box sx={{ flex: 1, overflowY: "auto", mb: 2 }}>
               {messages.map((msg, index) => (
                 <Box
@@ -119,10 +132,8 @@ const Chats = ({ open, setOpen, chat }) => {
               ))}
             </Box>
 
-            {/* Campo para responder */}
             <TextField
-              type='text'
-              name="messageSend"
+              type="text"
               value={messageSend}
               onChange={(e) => setMessageSend(e.target.value)}
               fullWidth
@@ -136,6 +147,7 @@ const Chats = ({ open, setOpen, chat }) => {
               color="primary"
               sx={{ mt: 2, width: "100%" }}
               onClick={handleSendMessage}
+              disabled={messageSend.trim() === ""}
             >
               Enviar
             </Button>

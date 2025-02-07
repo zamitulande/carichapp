@@ -1,6 +1,5 @@
-import { Box, Container, useMediaQuery } from '@mui/material'
+import { Box, useMediaQuery } from '@mui/material'
 import React from 'react'
-import Chats from './helpers/Chats'
 import ChatList from './helpers/ChatList'
 
 const Dashboard = () => {
