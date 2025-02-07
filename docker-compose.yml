@@ -3,6 +3,7 @@ version: "3.8"
 services:
   carichapp:
     build: .
+    container_name: carichapp
     ports:
       - "5173:5173"
     volumes:
