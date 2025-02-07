@@ -25,10 +25,10 @@ instalacion y levantar aplicacion (node v20.10.0 y npm v10.2.3)
 
 funcionalidades generales
 
--pagina principal carga listado de chats con mensajes iniciales
--para responder a cada chat el agente debe iniciar sesion
--hay dos agentes predeterminado para ingresar
--al hacer login ingresar:
+1. pagina principal carga listado de chats con mensajes iniciales
+2. para responder a cada chat el agente debe iniciar sesion
+3. hay dos agentes predeterminado para ingresar
+4. al hacer login ingresar:
 
         - email: juan@correo.com
           password: 123456
@@ -36,6 +36,6 @@ funcionalidades generales
         - email: rios@correo.com
           password: 123456
 
--al ingresar podra responder mensajes
--la primera vez que responda el agente este tendra un mensaje predeterminado para enviar al cliente
--podra apreciar si el cliente esta escribiendo y una notificacion para mensaje nuevo
+5. al ingresar podra responder mensajes
+6. la primera vez que responda el agente este tendra un mensaje predeterminado para enviar al cliente
+7. podra apreciar si el cliente esta escribiendo y una notificacion para mensaje nuevo
