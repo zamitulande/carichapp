@@ -6,13 +6,11 @@ import ChatList from './helpers/ChatList'
 const Dashboard = () => {
 
     const isMobile = useMediaQuery("(max-width:600px)");
-    
+
     return (
-        <>
-            <Box mt={isMobile ? 7 : 10}>
-                <ChatList />
-            </Box>
-        </>
+        <Box mt={isMobile ? 7 : 10}>
+            <ChatList />
+        </Box>
     )
 }
 

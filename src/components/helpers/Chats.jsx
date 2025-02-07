@@ -1,15 +1,15 @@
-import { Box, Button, Drawer, IconButton, Modal, TextField, Typography } from "@mui/material";
+import { Box, Button, Drawer, IconButton, Modal, TextField, Typography, useMediaQuery } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Cancel';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import DataChats from '../../data/chats.json'
-import { setChat, setMessageBoot } from "../../store/features/chatSlice";
+import { clearIsTypingChat, markChatAsUnread, setIsTypingChat, setMessageBoot } from "../../store/features/chatSlice";
 
 
 const Chats = ({ open, setOpen, chat }) => {
 
   const dispatch = useDispatch();
-
+  const isMobile = useMediaQuery("(max-width:600px)");
 
   const [messages, setMessages] = useState([]);
   const [messageSend, setMessageSend] = useState("");
@@ -40,6 +40,8 @@ const Chats = ({ open, setOpen, chat }) => {
     setMessages(updatedMessages);
     setMessageSend("");
 
+    dispatch(setIsTypingChat(chat.id));
+
     // Respuesta automática después de 1 segundo
     setTimeout(() => {
       const botMessage = { text: "Muchas gracias", sender: "bot", time: new Date().toLocaleTimeString() };
@@ -48,7 +50,10 @@ const Chats = ({ open, setOpen, chat }) => {
       localStorage.setItem(`chat_${chat.id}`, JSON.stringify(updatedWithBotResponse));
       setMessages(updatedWithBotResponse);
       dispatch(setMessageBoot(updatedWithBotResponse))
-    }, 5000);
+
+      dispatch(clearIsTypingChat(chat.id));
+      dispatch(markChatAsUnread(chat.id));
+    }, 10000);
 
   };
 
@@ -59,11 +64,13 @@ const Chats = ({ open, setOpen, chat }) => {
       anchor="right"
       open={open}
       onClose={handleCloseDrawer}
+      disableEnforceFocus
+      disableAutoFocus
     >
       <Box
         sx={{
-          width: 350,
-          height: "100vh",
+          width: isMobile ? 380 : 500,
+          height: "90%",
           display: "flex",
           flexDirection: "column",
           p: 2

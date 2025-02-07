@@ -5,25 +5,19 @@ import { red} from "@mui/material/colors";
 export const getTheme = createTheme({
     palette:{
           primary: {
-            main: '#D6AA26' //amarillo
+            main: '#2260ff'
           },
           secondary: {
-            main: '#408156' //verde menta
+            main: '#D0E8FF' 
           },
-          lightGreen:{
-            main: "#93A31C" //verde claro
+          hover: {
+            main: '#A8D0FF' 
+          },
+          notify:{
+            main: '#008000'
           },
           error: {
             main: red.A400
-          },
-          lightWhite:{
-            main: '#FFFFC4',
-          },
-          textField:{
-            main: '#FFFFFF'
-          },
-          grayDark:{
-            main: '#30374F'
           }
     }
 })

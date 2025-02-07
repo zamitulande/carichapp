@@ -39,7 +39,7 @@ const Header = () => {
     
     return (
         <AppBar position="fixed">
-            <Container maxWidth='xl'>
+            <Container>
                 <Toolbar disableGutters sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <Box sx={{ width: isMobile ? "120px" : "280px", height: isMobile ? "30px" : "80px" }}>
                         <img src={logo} alt="logo" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
