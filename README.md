@@ -1,6 +1,6 @@
-# Carichaap
+# Carichaap + ChatGPT
 
-aplicacion de mensajeria instantanea para atender clientes
+aplicacion de mensajeria instantanea para atender clientes integrado con chatgpt
 
 -OPCION 1
 instalacion y levantar aplicacion (OPCION DOCKER-COMPOSE)
