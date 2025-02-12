@@ -2,8 +2,8 @@ import { Box, Button, Drawer, IconButton, TextField, Typography, useMediaQuery }
 import CloseIcon from '@mui/icons-material/Cancel';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import responses from "../../data/responses";
 import { clearIsTypingChat, markChatAsUnread, setIsTypingChat, setMessageBoot } from "../../store/features/chatSlice";
+import { openIA } from "./openIA";
 
 
 const Chats = ({ open, setOpen, chat }) => {
@@ -30,16 +30,17 @@ const Chats = ({ open, setOpen, chat }) => {
 
       //si el chat tiene solo un mensaje, establecer el mensaje predeterminado
       if (storedMessages.length <= 1) {
-        setMessageSend(`Hola, soy ${users.name}, ¿qué necesitas?`);
+        setMessageSend(`Hola, soy ${users.name}, tu agente de servicio en que te puedo ayudar?`);
       } else {
         setMessageSend("");
       }
     }
   }, [chat]);
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (messageSend === "") return;
 
+    //mensaje enviado por el agente
     const newMessage = { text: messageSend, sender: "me", time: new Date().toLocaleTimeString() };
     const updatedMessages = [...messages, newMessage];
 
@@ -52,22 +53,16 @@ const Chats = ({ open, setOpen, chat }) => {
 
     dispatch(setIsTypingChat(chat.id));
 
-    //respuesta automática después de 10 segundo
-    setTimeout(() => {
-      //elegit una respuesta aleatoria del response.jsom
-      const randomIndex = Math.floor(Math.random() * responses.length);
-      const randomResponse = responses[randomIndex];
+    const botResponse = await openIA(messageSend);
 
-      const botMessage = { text: randomResponse, sender: "bot", time: new Date().toLocaleTimeString() };
-      const updatedWithBotResponse = [...updatedMessages, botMessage];
+    const updatedWithBotResponse = [...updatedMessages, botResponse];
 
-      localStorage.setItem(`chat_${chat.id}`, JSON.stringify(updatedWithBotResponse));
-      setMessages(updatedWithBotResponse);
-      dispatch(setMessageBoot(updatedWithBotResponse))
+    localStorage.setItem(`chat_${chat.id}`, JSON.stringify(updatedWithBotResponse));
+    setMessages(updatedWithBotResponse);
+    dispatch(setMessageBoot(updatedWithBotResponse));
 
-      dispatch(clearIsTypingChat(chat.id));
-      dispatch(markChatAsUnread(chat.id));
-    }, 10000);
+    dispatch(clearIsTypingChat(chat.id));
+    dispatch(markChatAsUnread(chat.id));
 
   };
 
@@ -140,6 +135,7 @@ const Chats = ({ open, setOpen, chat }) => {
               id="message-input"
               label="Escribe tu respuesta..."
               variant="outlined"
+              multiline
             />
 
             <Button

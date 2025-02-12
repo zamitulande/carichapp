@@ -97,20 +97,22 @@ const ChatList = () => {
               <Typography sx={{ fontSize: 20, fontWeight: "bold", padding: 0 }}>
                 {chat.name}
               </Typography>
-              
+
               {isTypingChats[chat.id] ? (
-              <Typography color='notify' variant="span" sx={{ fontWeight: "bold"}}>
-                Escribiendo...
+                <Typography color='notify' variant="span" sx={{ fontWeight: "bold" }}>
+                  Escribiendo...
+                </Typography>
+              ) : (
+                <Typography variant="span">{lastMessage.text.length > 50
+                  ? `${lastMessage.text.slice(0, 50)}...`
+                  : lastMessage.text}</Typography>
+              )}
+              <Typography variant="span" sx={{ mt: 1, fontSize: 15 }}>
+                Última vez {lastMessage.time}
               </Typography>
-            ) : (
-              <Typography variant="span">{lastMessage.text}</Typography>
-            )}
-            <Typography variant="span" sx={{ mt: 1, fontSize: 15 }}>
-              Última vez {lastMessage.time}
-            </Typography>
             </Box>
             {unreadMessages[chat.id] && (
-              <Typography variant="span" color='notify' sx={{ fontWeight: "bold", marginLeft:'auto' }}>Nuevo</Typography>
+              <Typography variant="span" color='notify' sx={{ fontWeight: "bold", marginLeft: 'auto' }}>Nuevo</Typography>
             )}
           </Box>
         );
