@@ -8,7 +8,8 @@ export const chatSlice = createSlice({
         messageBoot: [],
         notification: false,
         isTypingChats: {},
-        unreadMessages: {}
+        unreadMessages: {},
+        userNotRead: null
     },
     reducers: {
         setChat: (state, action) => {
@@ -33,6 +34,7 @@ export const chatSlice = createSlice({
         markChatAsUnread: (state, action) => {
             //mostrar notificacion
             state.unreadMessages[action.payload] = true;
+            state.userNotRead=action.payload;
         }
     }
 });

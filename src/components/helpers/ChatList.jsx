@@ -11,11 +11,13 @@ const ChatList = () => {
 
   const dispatch = useDispatch();
 
-
+  const userRead = useSelector((state) => state.chat.userNotRead);
   const chatsStorage = useSelector((state) => state.chat.chat);
   const isTypingChats = useSelector((state) => state.chat.isTypingChats);
   const messageBoot = useSelector((state) => state.chat.messageBoot);
   const unreadMessages = useSelector((state) => state.chat.unreadMessages);
+
+ 
 
   const login = useSelector((state) => state.user.login);
   const [open, setOpen] = useState(false);
@@ -65,6 +67,28 @@ const ChatList = () => {
       return storedChat.length > 0 ? storedChat[storedChat.length - 1] : null; //traer el último mensaje del localstorage
     }
   }
+
+  useEffect(() => {
+    chatsStorage.map((chat)=>{
+      if(chat.id === userRead){
+        Swal.fire({
+          icon: 'info',
+          text: 'Tienes un nuevo mensaje.',
+          timer: 3000,
+          showConfirmButton: false,
+          toast: true,
+          position: 'top-end',
+          customClass: {
+            popup: 'swal-custom-zindex'
+          }
+        });
+        
+      }
+      return;
+    })
+      
+  }, [unreadMessages])
+  
   return (
     <>
       {chatsStorage.map((chat, index) => {
@@ -117,7 +141,7 @@ const ChatList = () => {
           </Box>
         );
       })}
-      <Chats open={open} setOpen={setOpen} chat={selectedChat} />
+      <Chats open={open} setOpen={setOpen} chat={selectedChat} setSelectedChat={setSelectedChat}/>
     </>
   )
 }

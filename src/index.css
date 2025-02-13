@@ -11,3 +11,11 @@
   padding-left: 16px;
   padding-right: 16px;
 }
+
+.swal2-container-custom {
+  z-index: 2000 !important;
+}
+
+.swal2-container {
+  z-index: 2000 !important;
+}

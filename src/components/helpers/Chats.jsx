@@ -6,18 +6,21 @@ import { clearIsTypingChat, markChatAsUnread, setIsTypingChat, setMessageBoot } 
 import { openIA } from "./openIA";
 
 
-const Chats = ({ open, setOpen, chat }) => {
+const Chats = ({ open, setOpen, chat, setSelectedChat }) => {
 
   const dispatch = useDispatch();
   const isMobile = useMediaQuery("(max-width:600px)");
 
   const [messages, setMessages] = useState([]);
   const [messageSend, setMessageSend] = useState("");
+  const [timeoutId, setTimeoutId] = useState(null);
 
   const users = useSelector((state) => state.user.users)
+  const isTypingChats = useSelector((state) => state.chat.isTypingChats);
 
   const handleCloseDrawer = () => {
     setOpen(false);
+    setSelectedChat(null);
   }
 
   //carga mensajes guardados en localstorage
@@ -37,6 +40,35 @@ const Chats = ({ open, setOpen, chat }) => {
     }
   }, [chat]);
 
+  useEffect(() => {
+    if (messages.length > 0) {
+
+      if (timeoutId) clearTimeout(timeoutId);
+    
+      const id = setTimeout(async () => {
+        const lastMessage = messages[messages.length - 1];
+
+        if (lastMessage.sender !== "bot") {
+          dispatch(setIsTypingChat(chat.id));
+          const botResponse = await openIA(lastMessage.text);
+
+          const updatedMessages = [...messages, botResponse];
+          localStorage.setItem(`chat_${chat.id}`, JSON.stringify(updatedMessages));
+          dispatch(setMessageBoot(updatedMessages));
+
+          dispatch(clearIsTypingChat(chat.id));
+          dispatch(markChatAsUnread(chat.id));
+        }
+      }, 10000);
+
+      setTimeoutId(id);
+    }
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [messages]);
+  
   const handleSendMessage = async () => {
     if (messageSend === "") return;
 
@@ -45,7 +77,7 @@ const Chats = ({ open, setOpen, chat }) => {
     const updatedMessages = [...messages, newMessage];
 
     //guardar mensaje enviado en localStorage 
-    localStorage.setItem(`chat_${chat.id}`, JSON.stringify(updatedMessages));
+   localStorage.setItem(`chat_${chat.id}`, JSON.stringify(updatedMessages));
 
     //actualizar estado con el nuevo mensaje
     setMessages(updatedMessages);
@@ -58,7 +90,6 @@ const Chats = ({ open, setOpen, chat }) => {
     const updatedWithBotResponse = [...updatedMessages, botResponse];
 
     localStorage.setItem(`chat_${chat.id}`, JSON.stringify(updatedWithBotResponse));
-    setMessages(updatedWithBotResponse);
     dispatch(setMessageBoot(updatedWithBotResponse));
 
     dispatch(clearIsTypingChat(chat.id));
@@ -78,7 +109,7 @@ const Chats = ({ open, setOpen, chat }) => {
     >
       <Box
         sx={{
-          width: isMobile ? 380 : 500,
+          width: isMobile ? 340 : 500,
           height: "90%",
           display: "flex",
           flexDirection: "column",
@@ -94,17 +125,33 @@ const Chats = ({ open, setOpen, chat }) => {
         </IconButton>
         {chat && (
           <>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2 }}>
+            {/* header del chat */}
+
+            <Box sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-start",
+              gap: 1
+            }}
+            >
               <img
                 src={chat.image}
                 alt="User"
                 style={{ width: 50, height: 50, borderRadius: "50%" }}
               />
-              <Typography sx={{ fontWeight: "bold", fontSize: 18 }}>
-                {chat.name}
-              </Typography>
+              <Box sx={{ display: "flex", flexDirection: "column", margin: 0 }}>
+                <Typography sx={{ fontWeight: "bold", fontSize: 18 }}>
+                  {chat.name}
+                </Typography>
+                {isTypingChats[chat.id] && (
+                  <Typography color="notify" variant="body2" sx={{ fontWeight: "bold" }}>
+                    Escribiendo...
+                  </Typography>
+                )}
+              </Box>
             </Box>
 
+            {/* historial de mensajes */}
             <Box sx={{ flex: 1, overflowY: "auto", mb: 2 }}>
               {messages.map((msg, index) => (
                 <Box

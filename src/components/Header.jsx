@@ -38,7 +38,7 @@ const Header = () => {
     };
     
     return (
-        <AppBar position="fixed">
+        <AppBar position="fixed" sx={{ zIndex: 1000 }}>
             <Container>
                 <Toolbar disableGutters sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <Box sx={{ width: isMobile ? "120px" : "280px", height: isMobile ? "30px" : "80px" }}>
